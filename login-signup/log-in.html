@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            height: 100%;
+            width: 100%;
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #login-form h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        #login-form p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        #login-form input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            height: 35px;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        #login-form input:focus {
+            border: 1px solid dodgerblue;
+            outline: none;
+        }
+
+        #login-form a {
+            color: dodgerblue;
+            font-size: 14px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        #login-form a:hover {
+            text-decoration: underline;
+        }
+
+        .continue-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .continue {
+            background-color: dodgerblue;
+            color: white;
+            text-decoration: none;
+            width: 100px;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .continue:hover {
+            background-color: #1e90ff;
+        }
+
+        .continue:active {
+            background-color: #187bcd;
+        }
+    </style>
+</head>
+<body>
+    <div id="bar-container">
+        <form id="login-form">
+            <h3>Đăng nhập</h3>
+            <p>Email</p>
+            <input type="email" name="Email" placeholder="Nhập email của bạn" id="email">
+            <p>Mật khẩu</p>
+            <input type="password" name="Password" id="password">
+            <a href="#">Quên mật khẩu?</a>
+            <div class="continue-container">
+                <button class="continue">Continue</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        let login = document.querySelector("#bar-container")
+        login.addEventListener("submit", (e) => {
+        e.preventDefault()
+        let email = document.getElementById('email').value
+        let password = document.getElementById('password').value
+
+        if (!email){
+                alert('Vui lòng nhập email')
+            }
+            else if(!password){
+                alert('Vui lòng nhập mật khẩu')
+            }
+            else if(!email.includes('@gmail.com')){
+                alert('Email không hợp lệ')
+            }
+            else if(password.length<6){
+                alert('Password phải có ít nhất 6 kí tự')
+            }
+
+        let users = JSON.parse(localStorage.users)
+        let check = false
+        console.log(email, password)
+
+        for(let i=0; i < users.length; i++){
+            console.log(users[i].email, users[i].password)
+            if( users[i].email === email && users[i].password === password){
+                alert("Đăng nhập thành công!")
+                check = true
+                sessionStorage.setItem("isLogin", true);
+                sessionStorage.setItem("email", users[i].email);
+                window.location.href = '../home/home.html'
+                return
+            }
+        }
+        if (check === false){
+            alert("Sai thông tin đăng nhập!")
+        }
+    })
+    </script>
+</body>
+    

@@ -1,0 +1,160 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+#heading {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+#notifications {
+    font-size: 14px;
+}
+
+.cart {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+.account {
+    display: flex;
+    gap: 15px;
+}
+
+.register {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#heading-text {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 300;
+    margin: 20px 0;
+    color: #495057;
+}
+
+#navigation-bar {
+    background-color: #495057;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.navigation-items {
+    margin: 0 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navigation-items:hover {
+    color: #ced4da;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#cart {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60%;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px 0;
+}
+
+.product img.image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product .name {
+    flex: 2;
+    margin-left: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #212529;
+}
+
+.product .price {
+    flex: 1;
+    text-align: right;
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.product .quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product .quantity button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.product .quantity button:hover {
+    background-color: #5a6268;
+}
+
+.product .quantity span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #343a40;
+}
+
+.status {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.status:hover {
+    background-color: #c82333;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #343a40;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

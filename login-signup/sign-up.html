@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            height: 100%;
+            width: 100%;
+        }
+
+        #signup-form {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #signup-form h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        #signup-form p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        #signup-form input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            height: 35px;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        #signup-form input:focus {
+            border: 1px solid dodgerblue;
+            outline: none;
+        }
+
+        #signup-form a {
+            color: dodgerblue;
+            font-size: 14px;
+            text-decoration: none;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        #signup-form a:hover {
+            text-decoration: underline;
+        }
+
+        .continue-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .continue {
+            background-color: dodgerblue;
+            color: white;
+            text-decoration: none;
+            width: 100px;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .continue:hover {
+            background-color: #1e90ff;
+        }
+
+        .continue:active {
+            background-color: #187bcd;
+        }
+    </style>
+</head>
+<body>
+    <div id="bar-container">
+        <div id="bar">
+            <div><img src="" alt=""></div>
+            <form id="signup-form">
+                <h3>Đăng ký</h3>
+                <p>Email</p>
+                <input type="text" name="Email" placeholder="Nhập email của bạn" id="email">
+                <p>Tên</p>
+                <input type="text" name="username" placeholder="Nhập tên người dùng" id="username">
+                <p>Mật khẩu</p>
+                <input type="password" name="Mật khẩu" id="password">
+                <a href="log-in.html">Đã có tài khoản?</a>
+                <div class="continue-container">
+                    <button onclick="register()"  class="continue">Tiếp tục</button>
+                </div>
+            </form>
+       </div>
+    </div>
+    <script>
+        let register = document.querySelector("#bar-container")
+        register.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let email= document.getElementById("email").value
+            let password = document.getElementById("password").value
+            console.log(email)
+            console.log(password)
+
+            if (!email){
+                alert('Vui lòng nhập email')
+            }
+            else if(!password){
+                alert('Vui lòng nhập mật khẩu')
+            }
+            else if(!email.includes('@gmail.com')){
+                alert('Email không hợp lệ')
+            }
+            else if(password.length<6){
+                alert('Password phải có ít nhất 6 kí tự')
+            }
+            else{
+                if (localStorage.users) {
+                    let existed = false
+                    let users = JSON.parse(localStorage.users)
+                    for(let i=0; i <users.length; i++){
+                        if (users[i].email === email){
+                            alert('Email này đã đăng kí rồi')
+                            existed = true
+                            break
+                        }
+                    }
+
+                    if (existed=== false){
+                        users.push({
+                            email: email,
+                            password: password
+                        })
+                        localStorage.setItem('users', JSON.stringify(users))
+                        alert('Tạo tài khoản thành công')
+                        window.location.href = './log-in.html'
+                    }
+                }
+                else{
+                    let users = [
+                        {
+                            email: email,
+                            password: password
+                        }
+                    ]
+                    localStorage.setItem('users',JSON.stringify(users))
+                    alert('Tạo tài khoản thành công')
+                    window.location.href = './log-in.html'
+                }
+            }
+        })
+    </script>
+</body>
+    
